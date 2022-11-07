@@ -7,7 +7,7 @@ public class GoalVO {
 	private int g_num;
 	private Date g_regisDate;
 	private Date g_goalDate;
-	private String name;
+	private String g_name;
 	private int g_goalAmount;
 	private int g_currentAmount;
 	
@@ -35,11 +35,11 @@ public class GoalVO {
 	public void setG_goalDate(Date g_goalDate) {
 		this.g_goalDate = g_goalDate;
 	}
-	public String getName() {
-		return name;
+	public String getG_name() {
+		return g_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setG_Name(String name) {
+		this.g_name = name;
 	}
 	public int getG_goalAmount() {
 		return g_goalAmount;
@@ -56,7 +56,7 @@ public class GoalVO {
 	@Override
 	public String toString() {
 		return "GoalVO [id=" + id + ", g_num=" + g_num + ", g_regisDate=" + g_regisDate + ", g_goalDate=" + g_goalDate
-				+ ", name=" + name + ", g_goalAmount=" + g_goalAmount + ", g_currentAmount=" + g_currentAmount + "]";
+				+ ", g_name=" + g_name + ", g_goalAmount=" + g_goalAmount + ", g_currentAmount=" + g_currentAmount + "]";
 	}
 
 }

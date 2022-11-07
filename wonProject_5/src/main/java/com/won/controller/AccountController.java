@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class BankController {
+public class AccountController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
 	@GetMapping("/l_main")
 	public String mainGET() {
 		logger.info("가계부 메인창 진입");
-		return "accMain";
+		return "/account/accMain";
 	}
 	
 	@GetMapping("/change")
