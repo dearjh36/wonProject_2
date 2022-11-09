@@ -1,4 +1,4 @@
-package com.won.mapper;
+/*package com.won.mapper;
 
 import java.util.List;
 
@@ -18,3 +18,4 @@ public interface AccountMapper {
 	// 가계부 내역 삭제
 	public int accountDelete(int ac_num);
 }
+*/

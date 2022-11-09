@@ -2,38 +2,40 @@ package com.won.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.won.VO.GoalVO;
-import com.won.mapper.GoalMapper;
+import com.won.dao.GoalDao;
 
 @Service
 public class GoalServiceImpl implements GoalService{
 	
 	private static final Logger log = LoggerFactory.getLogger(GoalServiceImpl.class);
 	
-	@Autowired
-	GoalMapper goalMapper;
+	@Inject
+	private GoalDao goalDao;
+	
+	// 목표 목록
+	@Override
+	public List<GoalVO> goalList() throws Exception {
+		
+		log.info("(service)goalList().....");
+		
+		return goalDao.goalList();
+		
+	}
+	
 	
 	// 목표 등록
 	@Override
 	public void goalInsert(GoalVO goal) throws Exception{
 		
-		goalMapper.goalInsert(goal);
+		goalDao.goalInsert(goal);
 		
-	}
-
-	// 목표 목록
-	@Override
-	public List<GoalVO> goalList(GoalVO goal) throws Exception {
-		
-		log.info("(service)goalList()....." + goal);
-		
-		return goalMapper.goalList(goal);
-	
 	}
 
 	// 목표 상세 페이지 
@@ -42,25 +44,27 @@ public class GoalServiceImpl implements GoalService{
 		
 		log.info("goalView....." + g_num);
 		
-		return goalMapper.goalView(g_num);
+		return goalDao.goalView(g_num);
 	}
 
 	// 목표 수정
 	@Override
-	public int goalModify(GoalVO goal) throws Exception {
+	public void goalModify(GoalVO goal) throws Exception {
 		
 		log.info("(service)goalModify()....." + goal);
-
-		return goalMapper.goalModify(goal);
+		
+		goalDao.goalModify(goal);
+		
 	}
 	
 	// 목표 삭제
 	@Override
-	public int goalDelete(int g_num) {
+	public void goalDelete(int g_num) throws Exception {
 
 		log.info("goalDelete..........");
 		
-		return goalMapper.goalDelete(g_num);
+		goalDao.goalDelete(g_num);
+		
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.won.service;
+/*package com.won.service;
 
 import java.util.List;
 
@@ -18,3 +18,4 @@ public interface AccountService {
 	// 가계부 내역 삭제
 	public int accountDelete(int ac_num);
 }
+*/

@@ -3,55 +3,66 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ora.mapper.GoalMepper">
+<mapper namespace="com.won.mapper.GoalMapper">
 
 	<!-- 목표 목록 -->
 	<select id = "goalList" resultType = "com.won.VO.GoalVO">
 	<![CDATA[
-		select * from goal where id = #{id} 
+		select * 
+		from goal 
+		where id = #{id}
 	]]>
 	</select>
 	
 	<!-- 목표 상세 보기 -->
-	<select id = "goalView" resultType = "com.won.VO.GoalVO">
+	<select id = "goalView" resultType = "com.won.VO.GoalVO" parameterType="int">
 	<![CDATA[
-		select * from goal where g_num = #{g_num}
+		select * 
+		from goal 
+		where g_num = #{g_num}
 	]]>
 	</select>
 	
 	<!-- 목표 생성 -->
-	<insert id = "goalInsert">
+	<insert id = "goalInsert" parameterType="com.won.VO.GoalVO">
 	<![CDATA[
-		insert into goal values(#{id}, g_seq.nextval, #{g_regisDate}, #{g_goalDate}, #{g_name}, #{g_goalAmount}, 0)
+		insert into goal 
+		values(#{id}, g_seq.nextval, #{g_regisDate}, #{g_goalDate}, #{g_name}, #{g_goalAmount}, 0)
 	]]>
 	</insert>
 	
 	<!-- 목표 정보 수정 -->
-	<update id = "goalModify">
+	<update id = "goalModify" parameterType="com.won.VO.GoalVO">
 	<![CDATA[
-		update goal set g_regisDate = #{g_regisDate}, g_goalDate = #{g_goalDate}, g_name = #{g_name}, g_goalAmount = #{g_goalAmount} where id = #{id}
+		update goal 
+		set 
+			g_regisDate = #{g_regisDate},
+			g_goalDate = #{g_goalDate},
+			g_name = #{g_name},
+			g_goalAmount = #{g_goalAmount}
+		where id = #{id}
 	]]>
 	</update>
 	
+	<!-- 목표 삭제 -->
+	<delete id = "goalDelete" parameterType="int">
+	<![CDATA[
+		delete from goal where g_num = #{g_num}
+	]]>
+	</delete>	
+	
 	<!-- 금액 추가 -->
-	<update id = "currentAmountAdd">
+	<update id = "currentAmountAdd" parameterType="com.won.VO.GoalVO">
 	<![CDATA[
 		update goal set g_currentAmount = #{g_currentAmount} where id = #{id}
 	]]>
 	</update>
 	
 	<!-- 금액 삭제 -->
-	<update id = "currentAmountDel">
+	<update id = "currentAmountDel" parameterType="int">
 	<![CDATA[
 		update goal set g_currentAmount = #{g_currentAmount} where id = #{id}
 	]]>
 	</update>
-	
-	<!-- 목표 삭제 -->
-	<delete id = "goalDelete">
-	<![CDATA[
-		delete from goal where g_num = #{g_num}
-	]]>
-	</delete>	
 	
 </mapper>

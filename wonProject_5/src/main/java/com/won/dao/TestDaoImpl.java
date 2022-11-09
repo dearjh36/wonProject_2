@@ -14,7 +14,7 @@ public class TestDaoImpl implements TestDao {
 	private SqlSession sqlsession;
 	
 	// mapper파일의 namespace
-	private static String namespace = "com.ora.mapper.TestMapper";
+	private static String namespace = "com.won.mapper.TestMapper";
 	
 	
 	@Override
