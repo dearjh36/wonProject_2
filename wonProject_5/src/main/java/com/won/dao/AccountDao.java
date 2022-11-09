@@ -1,5 +1,23 @@
 package com.won.dao;
 
-public interface AccountDao {
+import java.util.List;
 
+import com.won.VO.AccountVO;
+
+public interface AccountDao {
+	
+	// 가계부 내역
+	public List<AccountVO> accountList() throws Exception;
+	
+	// 목표 하나 고르기
+	public AccountVO accountView(int ac_num) throws Exception;
+
+	// 가계부 내역 생성
+	public void accountInsert(AccountVO account) throws Exception;
+
+	// 가계부 내역 수정
+	public void accountModify(AccountVO account) throws Exception;
+
+	// 가계부 내역 삭제
+	public void accountDelete(int ac_num) throws Exception;
 }

@@ -50,6 +50,7 @@
 		delete from goal where g_num = #{g_num}
 	]]>
 	</delete>	
+
 	
 	<!-- 금액 추가 -->
 	<update id = "currentAmountAdd" parameterType="com.won.VO.GoalVO">

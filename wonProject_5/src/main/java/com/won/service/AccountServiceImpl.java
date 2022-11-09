@@ -1,48 +1,67 @@
-/*package com.won.service;
+package com.won.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.won.VO.AccountVO;
-import com.won.mapper.AccountMapper;
+import com.won.dao.AccountDao;
 
 public class AccountServiceImpl implements AccountService {
 
 	private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
 
-	@Autowired
-	AccountMapper accountMapper;
+	@Inject
+	private AccountDao accDao;
 
+	// 가계부 내역 목록
 	@Override
-	public List<AccountVO> accounList(AccountVO account) throws Exception {
-		log.info("(service)goalList()....." + account);
+	public List<AccountVO> accountList() throws Exception {
 
-		return accountMapper.accounList(account);
+		log.info("(service)accList().....");
+
+		return accDao.accountList();
 	}
 
+	// 가계부 내역 등록
 	@Override
 	public void accountInsert(AccountVO account) throws Exception {
-		accountMapper.accountInsert(account);
+
+		log.info("accountInsert().....");
+
+		accDao.accountInsert(account);
 
 	}
 
+	// 가계부 내역 수정
 	@Override
-	public int accountModify(AccountVO account) throws Exception {
-		log.info("(service)accountModify()....." + account);
+	public void accountModify(AccountVO account) throws Exception {
 
-		return accountMapper.accountModify(account);
+		log.info("accountModify().....");
+
+		accDao.accountModify(account);
+
 	}
 
+	// 가계부 내역 삭제
 	@Override
-	public int accountDelete(int ac_num) {
-		log.info("accountDelete..........");
+	public void accountDelete(int ac_num) throws Exception {
 
-		return accountMapper.accountDelete(ac_num);
+		log.info("accountDelete().....");
+
+		accDao.accountDelete(ac_num);
+
 	}
 
+	// 가계부 내역 하나 고르기
+	@Override
+	public AccountVO accountView(int ac_num) throws Exception {
 
+		return accDao.accountView(ac_num);
+		
+	}
 
-}*/
+}

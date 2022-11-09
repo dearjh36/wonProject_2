@@ -10,6 +10,7 @@ public class AccountVO {
 	private int ac_goalNum;
 	private int ac_price;
 	private String ac_content;
+	
 	public String getId() {
 		return id;
 	}

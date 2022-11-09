@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.won.mapper.AccountMepper">
+<mapper namespace="com.won.mapper.AccountMapper">
 
 	<!-- 가계부 내역 -->
 	<select id = "accountList" resultType = "com.won.VO.AccountVO">
@@ -12,15 +12,22 @@
 	]]>
 	</select>
 	
+	<!-- 가계부 내역 하나 고르기-->
+	<select id = "goalView" resultType = "com.won.VO.AccountVO" parameterType="int">
+	<![CDATA[
+		select * from account where ac_num = #{ac_num};
+	]]>
+	</select>
+	
 	<!-- 가계부 내역 생성 -->
-	<insert id = "accountInsert">
+	<insert id = "accountInsert" parameterType="com.won.VO.AccountVO">
 	<![CDATA[
 		insert into account values(#{id}, ac_seq.nextval, #{ac_date}, #{ac_classify}, #{ac_goalNum}, #{ac_price}, #{ac_content})
 	]]>
 	</insert>
 	
 	<!-- 가계부 내역 수정 -->
-	<update id = "accountModify">
+	<update id = "accountModify" parameterType="com.won.VO.AccountVO">
 	<![CDATA[
 		update account 
 		set ac_date = #{ac_date}, ac_classify = #{ac_classify}, 
@@ -29,11 +36,21 @@
 	]]>
 	</update>
 	
-	<!-- 목표 삭제 -->
+	<!-- 가계부 내역 삭제 -->
 	<delete id = "accountDelete">
 	<![CDATA[
 		delete from account where ac_num = #{ac_num}
 	]]>
 	</delete>	
+	
+		
+	<!-- 목표 금액 내역 목록 -->
+	<select id = "goaLAmountList" resultType = "com.won.VO.AccountVO">
+	<![CDATA[
+		select * 
+		from account
+		where id = #{id}
+	]]>
+	</select>
 	
 </mapper>

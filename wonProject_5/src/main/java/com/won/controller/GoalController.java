@@ -36,15 +36,15 @@ public class GoalController {
 		model.addAttribute("goalList", goalList);
 	}
 
-	// 목표 작성 Get
+	// 목표 등록 Get
 	@RequestMapping(value = "/goalAdd", method = RequestMethod.GET)
-	public void postAdd() throws Exception {
+	public void getAdd() throws Exception {
 
 	}
 
-	// 목표 작성 Post
+	// 목표 등록 Post
 	@RequestMapping(value = "/goalAdd", method = RequestMethod.POST)
-	public String getAdd(GoalVO goal) throws Exception {
+	public String postAdd(GoalVO goal) throws Exception {
 
 		goalService.goalInsert(goal);
 

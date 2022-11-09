@@ -40,7 +40,7 @@ public class GoalDaoImpl implements GoalDao{
 		
 	}
 
-	// 게시물 수정
+	// 목표 수정
 	@Override
 	public void goalModify(GoalVO goal) throws Exception {
 
@@ -48,6 +48,7 @@ public class GoalDaoImpl implements GoalDao{
 		
 	}
 
+	// 목표 삭제
 	@Override
 	public void goalDelete(int g_num) throws Exception {
 
