@@ -1,0 +1,50 @@
+drop table member;
+
+create table member(
+id varchar2(20) primary key,  --회원 아이디
+m_name varchar2(20),          --회원 이름
+m_birth varchar2(20),         --회원 생일
+m_pw varchar2(20),            --회원 비밀번호
+m_phone varchar2(20),         --회원 전화번호
+m_email varchar2(20),         --회원 이메일
+m_sub varchar2(20),           --회원 구독 여부
+m_state varchar2(500));       --회원 상태(상담내역)
+
+create table goal(
+id varchar2(20),                --회원 아이디
+g_num int not null primary key, --목표 번호
+g_regisDate date,               --목표 등록 날짜
+g_goalDate date,                --목표 날짜
+g_name varchar2(20),            --목표 이름
+g_goalAmount int,         --목표 금액
+g_currentAmount int    -- 모인 금액
+); 
+
+create table sub(
+id varchar2(20),                --회원 아이디
+s_num int not null primary key, --구독 번호
+s_startDate date,               --구독 시작 날짜
+s_lastDate date,                --구독 마지막 날짜
+s_ing varchar2(20)              --구독 횟수 //한번 기준 
+);
+
+create table account(
+id varchar2(20),	                -- 회원 아이디
+ac_num int not null primary key,  -- 가계부 번호
+ac_date date,                     -- 가계부 내역 등록 날짜
+ac_classify varchar2(20),         -- 수입 지출 분류  
+ac_goalNum int,                   -- 목표 번호
+ac_price int,                     -- 가계부 내역 금액         
+ac_content varchar2(200)          -- 가계부 내용
+);
+
+create sequence g_num
+INCREMENT by 1
+START with 1
+MINVALUE 1
+MAXVALUE 9999
+NOCACHE
+NOCYCLE
+NOORDER;
+
+

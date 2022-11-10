@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.won.VO.AccountVO;
+import com.won.model.AccountVO;
 
 @Repository
 public class AccountDaoImpl implements AccountDao{

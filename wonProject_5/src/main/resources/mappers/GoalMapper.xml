@@ -6,7 +6,7 @@
 <mapper namespace="com.won.mapper.GoalMapper">
 
 	<!-- 목표 목록 -->
-	<select id = "goalList" resultType = "com.won.VO.GoalVO">
+	<select id = "goalList" resultType = "com.won.model.GoalVO">
 	<![CDATA[
 		select * 
 		from goal 
@@ -15,7 +15,7 @@
 	</select>
 	
 	<!-- 목표 상세 보기 -->
-	<select id = "goalView" resultType = "com.won.VO.GoalVO" parameterType="int">
+	<select id = "goalView" resultType = "com.won.model.GoalVO" parameterType="int">
 	<![CDATA[
 		select * 
 		from goal 
@@ -24,7 +24,7 @@
 	</select>
 	
 	<!-- 목표 생성 -->
-	<insert id = "goalInsert" parameterType="com.won.VO.GoalVO">
+	<insert id = "goalInsert" parameterType="com.won.model.GoalVO">
 	<![CDATA[
 		insert into goal 
 		values(#{id}, g_seq.nextval, #{g_regisDate}, #{g_goalDate}, #{g_name}, #{g_goalAmount}, 0)
@@ -32,7 +32,7 @@
 	</insert>
 	
 	<!-- 목표 정보 수정 -->
-	<update id = "goalModify" parameterType="com.won.VO.GoalVO">
+	<update id = "goalModify" parameterType="com.won.model.GoalVO">
 	<![CDATA[
 		update goal 
 		set 
@@ -53,7 +53,7 @@
 
 	
 	<!-- 금액 추가 -->
-	<update id = "currentAmountAdd" parameterType="com.won.VO.GoalVO">
+	<update id = "currentAmountAdd" parameterType="com.won.model.GoalVO">
 	<![CDATA[
 		update goal set g_currentAmount = #{g_currentAmount} where id = #{id}
 	]]>

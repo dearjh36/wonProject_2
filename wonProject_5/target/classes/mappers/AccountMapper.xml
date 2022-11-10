@@ -6,28 +6,28 @@
 <mapper namespace="com.won.mapper.AccountMapper">
 
 	<!-- 가계부 내역 -->
-	<select id = "accountList" resultType = "com.won.VO.AccountVO">
+	<select id = "accountList" resultType = "com.won.model.AccountVO">
 	<![CDATA[
 		select * from account where id = #{id}, ac_date between '2022-11-01' and '2022-12-01';
 	]]>
 	</select>
 	
 	<!-- 가계부 내역 하나 고르기-->
-	<select id = "goalView" resultType = "com.won.VO.AccountVO" parameterType="int">
+	<select id = "accontView" resultType = "com.won.model.AccountVO" parameterType="int">
 	<![CDATA[
 		select * from account where ac_num = #{ac_num};
 	]]>
 	</select>
 	
 	<!-- 가계부 내역 생성 -->
-	<insert id = "accountInsert" parameterType="com.won.VO.AccountVO">
+	<insert id = "accountInsert" parameterType="com.won.model.AccountVO">
 	<![CDATA[
 		insert into account values(#{id}, ac_seq.nextval, #{ac_date}, #{ac_classify}, #{ac_goalNum}, #{ac_price}, #{ac_content})
 	]]>
 	</insert>
 	
 	<!-- 가계부 내역 수정 -->
-	<update id = "accountModify" parameterType="com.won.VO.AccountVO">
+	<update id = "accountModify" parameterType="com.won.model.AccountVO">
 	<![CDATA[
 		update account 
 		set ac_date = #{ac_date}, ac_classify = #{ac_classify}, 
@@ -45,7 +45,7 @@
 	
 		
 	<!-- 목표 금액 내역 목록 -->
-	<select id = "goaLAmountList" resultType = "com.won.VO.AccountVO">
+	<select id = "goaLAmountList" resultType = "com.won.model.AccountVO">
 	<![CDATA[
 		select * 
 		from account

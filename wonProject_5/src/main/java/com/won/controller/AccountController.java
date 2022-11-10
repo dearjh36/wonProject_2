@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.won.VO.AccountVO;
-import com.won.VO.GoalVO;
 import com.won.dao.AccountDao;
+import com.won.model.AccountVO;
+import com.won.model.GoalVO;
 import com.won.service.AccountService;
 
 @Controller

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.won.mapper.MemberMapper">
+	
+	<!-- 회원 가입 -->
+	<insert id = "memberJoin">
+	<![CDATA[
+		insert into member 
+		values(#{id}, #{m_name}, #{m_birth}, #{m_pw}, #{m_phone}, #{m_email}, 0, 0)
+	]]>
+	</insert>
+
+	<!-- 로그인 -->
+	<select id = "memberLogin" resultType = "com.won.model.MemberVO">
+	<![CDATA[
+		select id, m_name, m_birth, m_pw, m_phone, m_email, m_sub
+		from member 
+		where id = #{id} and m_pw = #{m_pw}
+	]]>
+	</select>
+
+	
+</mapper>

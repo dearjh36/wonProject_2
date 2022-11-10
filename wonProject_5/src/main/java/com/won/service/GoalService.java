@@ -2,7 +2,7 @@ package com.won.service;
 
 import java.util.List;
 
-import com.won.VO.GoalVO;
+import com.won.model.GoalVO;
 
 public interface GoalService {
 	

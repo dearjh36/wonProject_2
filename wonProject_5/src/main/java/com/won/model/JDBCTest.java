@@ -1,4 +1,4 @@
-package com.won.VO;
+package com.won.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

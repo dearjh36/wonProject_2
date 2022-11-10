@@ -2,7 +2,7 @@ package com.won.dao;
 
 import java.util.List;
 
-import com.won.VO.AccountVO;
+import com.won.model.AccountVO;
 
 public interface AccountDao {
 	

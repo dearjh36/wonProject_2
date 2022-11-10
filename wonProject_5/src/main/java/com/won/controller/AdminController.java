@@ -4,18 +4,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/admin/")
 public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-
-	@GetMapping("/ad_main")
-	public String ad_mainGET() {
-		logger.info("관리자 메인창 진입");
-		return "adminMain";
-		
+	// 관리자 화면
+	@RequestMapping(value ="/adminMain", method = RequestMethod.GET)
+	public void getAdminMain() throws Exception {
+		logger.info("get adminMain");
 	}
 	
 	@GetMapping("/memberSearch")

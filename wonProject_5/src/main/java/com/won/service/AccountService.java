@@ -2,7 +2,7 @@ package com.won.service;
 
 import java.util.List;
 
-import com.won.VO.AccountVO;
+import com.won.model.AccountVO;
 
 public interface AccountService {
 

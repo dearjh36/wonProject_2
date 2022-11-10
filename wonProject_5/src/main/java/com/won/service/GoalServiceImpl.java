@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.won.VO.GoalVO;
 import com.won.dao.GoalDao;
+import com.won.model.GoalVO;
 
 @Service
 public class GoalServiceImpl implements GoalService{

@@ -6,10 +6,12 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-import com.won.VO.AccountVO;
 import com.won.dao.AccountDao;
+import com.won.model.AccountVO;
 
+@Service
 public class AccountServiceImpl implements AccountService {
 
 	private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
