@@ -18,7 +18,7 @@ public class AccountDaoImpl implements AccountDao{
 	
 	// 가계부 목록
 	@Override
-	public List<AccountVO> accountList() throws Exception {
+	public List<AccountVO> accountList(String id) throws Exception {
 		
 		return sqlsession.selectList(namespace+".accountList");
 		

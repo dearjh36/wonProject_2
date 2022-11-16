@@ -7,7 +7,7 @@ import com.won.model.AccountVO;
 public interface AccountService {
 
 	// 가계부 내역
-	public List<AccountVO> accountList() throws Exception;
+	public List<AccountVO> accountList(String id) throws Exception;
 
 	// 가계부 내역 생성
 	public void accountInsert(AccountVO account) throws Exception;

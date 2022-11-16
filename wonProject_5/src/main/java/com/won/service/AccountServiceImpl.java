@@ -21,11 +21,11 @@ public class AccountServiceImpl implements AccountService {
 
 	// 가계부 내역 목록
 	@Override
-	public List<AccountVO> accountList() throws Exception {
+	public List<AccountVO> accountList(String id) throws Exception {
 
 		log.info("(service)accList().....");
 
-		return accDao.accountList();
+		return accDao.accountList(id);
 	}
 
 	// 가계부 내역 등록

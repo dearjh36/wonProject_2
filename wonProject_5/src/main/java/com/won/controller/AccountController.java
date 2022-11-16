@@ -3,19 +3,18 @@ package com.won.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.won.dao.AccountDao;
 import com.won.model.AccountVO;
-import com.won.model.GoalVO;
+import com.won.model.MemberVO;
 import com.won.service.AccountService;
 
 @Controller
@@ -29,13 +28,16 @@ public class AccountController {
 
 	// 가계부 내역 목록
 	@RequestMapping(value = "/accMain", method = RequestMethod.GET)
-	public void listGET(Model model) throws Exception {
+	public void listGET(HttpSession session, Model model) throws Exception {
 
 		logger.info("가계부 내역 목록창 진입");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String id = member.getId();
 
+		logger.info(id);
 		List<AccountVO> accList = null;
-		accList = accService.accountList();
-
+		accList = accService.accountList(id);
 		model.addAttribute("accList", accList);
 	}
 
@@ -47,10 +49,12 @@ public class AccountController {
 
 	// 가계부 내역 등록 POST
 	@RequestMapping(value = "/accAdd", method = RequestMethod.POST)
-	public String postAdd(AccountVO accVO) throws Exception {
+	public String postAdd(AccountVO accVO, HttpSession session) throws Exception {
 
 		logger.info("가계부 내역 목록창 진입");
 
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		accVO.setId(member.getId());
 		accService.accountInsert(accVO);
 
 		return "redirect:/account/accMain";

@@ -7,7 +7,7 @@ import com.won.model.AccountVO;
 public interface AccountDao {
 	
 	// 가계부 내역
-	public List<AccountVO> accountList() throws Exception;
+	public List<AccountVO> accountList(String id) throws Exception;
 	
 	// 목표 하나 고르기
 	public AccountVO accountView(int ac_num) throws Exception;

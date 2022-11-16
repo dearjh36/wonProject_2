@@ -36,7 +36,7 @@ public class MemberController {
 		
 		memService.memberJoin(memVO);
 		
-		return "redirect:/";
+		return "redirect:/member/memLogin";
 	}
 	
 	// 로그인 GET
@@ -52,9 +52,7 @@ public class MemberController {
 		
 		MemberVO login = memService.memberLogin(memVO);
 		HttpSession session = req.getSession();
-		
-		
-		
+			
 		if(login != null) {
 			session.setAttribute("member", login);
 		} else {
@@ -63,7 +61,7 @@ public class MemberController {
 			return "redirect:/member/memLogin";
 		}
 		
-		return "redirect:/";
+		return "redirect:/account/accMain";
 	}
 	
 	// 로그아웃

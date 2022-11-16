@@ -9,7 +9,7 @@
 	<insert id = "memberJoin">
 	<![CDATA[
 		insert into member 
-		values(#{id}, #{m_name}, #{m_birth}, #{m_pw}, #{m_phone}, #{m_email}, 0, 0)
+		values(#{id}, #{m_name}, #{m_birth}, #{m_pw}, #{m_phone}, #{m_email}, 0, 1234)
 	]]>
 	</insert>
 

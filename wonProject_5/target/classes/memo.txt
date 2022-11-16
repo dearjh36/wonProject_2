@@ -1,2 +1,7 @@
 관리자일때
 https://kuzuro.blogspot.com/2018/10/4.html
+
+accountmapper.xml - 가게부 내역 
+select * from account where id = #{id}, ac_date between '2022-11-01' and '2022-12-01';
+
+submit()을 스크립트 내에 fuction() 으로 빼고 싶은데 안됨 바로 submit() 갈겨야함

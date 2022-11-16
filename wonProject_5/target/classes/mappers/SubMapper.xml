@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.won.mapper.SubMapper">
+
+	<!-- 구독자 목록 -->
+	<select id="subList" resultType="com.won.model.SubVO">
+		<![CDATA[
+			select * 
+			from sub 
+		]]>
+	</select>
+
+	<!-- 구독하기, 자동연장은 cron 사용 -->
+	<insert id="subInsert" parameterType="com.won.model.SubVO">
+	<![CDATA[
+		insert into sub 
+		values(#{id}, s_seq.nextval, #{s_startDate}, #{s_lastDate}, #{s_ing}, #{s_pay})
+	]]>
+	</insert>
+
+	<!-- 구독취소하기 -->
+	<update id="subStop" parameterType="com.won.model.SubVO">
+	<![CDATA[
+		update sub 
+		set 
+			s_ing = 0
+		where id = #{id} and s_num = #{s_num}
+	]]>
+	</update>
+	
+	<!-- 구독 내역 하나 가져오기 -->
+	<select id = "subView" resultType = "com.won.model.SubVO" parameterType="int">
+	<![CDATA[
+		select * 
+		from sub 
+		where s_num = #{s_num}
+	]]>
+	</select>
+	
+	<!-- 구독 연장하기 -->
+	<update id = "subExtend" parameterType="com.won.model.GoalVO">
+	<![CDATA[
+		update goal 
+		set 
+			s_lastDate  = #{s_lastDate },
+		where s_num = #{s_num}
+	]]>
+	</update>
+
+</mapper>
