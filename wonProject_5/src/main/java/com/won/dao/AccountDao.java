@@ -20,5 +20,8 @@ public interface AccountDao {
 
 	// 가계부 내역 삭제
 	public void accountDelete(int ac_num) throws Exception;
+	
+	// 목표 금액 내역
+	public List<AccountVO> goalAmountList(int ac_goalNum);
 
 }

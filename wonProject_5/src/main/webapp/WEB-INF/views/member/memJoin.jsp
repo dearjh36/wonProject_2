@@ -49,7 +49,6 @@
 				<input class="hidden" name="m_sub" id="m_sub">
 				<input class="hidden" name="m_state" id="m_state"> -->
 				
-				<input class="mail_input" name="m_email" id="m_email">
 				<div class="join_button_wrap">
 					<input type="submit" class="join_button" value="가입하기">
 					<input type="reset" value="취소하기" >

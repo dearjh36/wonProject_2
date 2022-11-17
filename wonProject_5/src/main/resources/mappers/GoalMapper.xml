@@ -51,6 +51,14 @@
 	]]>
 	</delete>	
 
+	<!-- 목표 개수 -->
+	<select id = "goalCount" resultType = "Integer" parameterType="String">
+	<![CDATA[
+		select count(*) 
+		from goal 
+		where id = #{id}
+	]]>
+	</select>	
 	
 	<!-- 금액 추가 -->
 	<update id = "currentAmountAdd" parameterType="com.won.model.GoalVO">

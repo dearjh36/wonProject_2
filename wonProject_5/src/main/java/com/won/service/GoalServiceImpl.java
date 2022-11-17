@@ -21,20 +21,20 @@ public class GoalServiceImpl implements GoalService{
 	
 	// 목표 목록
 	@Override
-	public List<GoalVO> goalList() throws Exception {
+	public List<GoalVO> goalList(String id) throws Exception {
 		
 		log.info("(service)goalList().....");
 		
-		return goalDao.goalList();
+		return goalDao.goalList(id);
 		
 	}
 	
 	
 	// 목표 등록
 	@Override
-	public void goalInsert(GoalVO goal) throws Exception{
+	public void goalInsert(GoalVO goalVO) throws Exception{
 		
-		goalDao.goalInsert(goal);
+		goalDao.goalInsert(goalVO);
 		
 	}
 
@@ -64,6 +64,14 @@ public class GoalServiceImpl implements GoalService{
 		log.info("goalDelete..........");
 		
 		goalDao.goalDelete(g_num);
+		
+	}
+
+	// 목표 개수
+	@Override
+	public int goalCount(String id) throws Exception {
+		
+		return goalDao.goalCount(id);
 		
 	}
 	

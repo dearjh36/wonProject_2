@@ -13,7 +13,7 @@ m_state varchar2(500));       --회원 상태(상담내역)
 create table goal(
 id varchar2(20),                --회원 아이디
 g_num int not null primary key, --목표 번호
-g_regisDate date,               --목표 등록 날짜
+g_regisDate date,               --등록 날짜
 g_goalDate date,                --목표 날짜
 g_name varchar2(20),            --목표 이름
 g_goalAmount int,         --목표 금액
@@ -26,6 +26,7 @@ s_num int not null primary key, --구독 번호
 s_startDate date,               --구독 시작 날짜
 s_lastDate date,                --구독 마지막 날짜
 s_ing varchar2(20)              --구독 횟수 //한번 기준 
+s_pay varchar2(20) 		-- 결제 수단
 );
 
 create table account(

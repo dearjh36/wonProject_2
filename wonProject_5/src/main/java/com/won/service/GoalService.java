@@ -7,17 +7,20 @@ import com.won.model.GoalVO;
 public interface GoalService {
 	
 	// 목표 목록
-	public List<GoalVO> goalList() throws Exception;
+	public List<GoalVO> goalList(String id) throws Exception;
 	
 	// 목표 생성 
-	public void goalInsert(GoalVO goal) throws Exception;
+	public void goalInsert(GoalVO goalVO) throws Exception;
 	
 	// 목표 상세 페이지
 	public GoalVO goalView(int g_num) throws Exception;
 	
 	// 목표 수정
-	public void goalModify(GoalVO goal) throws Exception;
+	public void goalModify(GoalVO goalVO) throws Exception;
 	
 	// 목표 삭제
 	public void goalDelete(int g_num) throws Exception;
+	
+	// 목표 개수
+	public int goalCount(String id) throws Exception;
 }

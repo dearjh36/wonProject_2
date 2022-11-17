@@ -1,6 +1,6 @@
 package com.won.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class GoalVO {
 	private String id;
@@ -10,7 +10,6 @@ public class GoalVO {
 	private String g_name;
 	private int g_goalAmount;
 	private int g_currentAmount;
-	
 	public String getId() {
 		return id;
 	}
@@ -38,8 +37,8 @@ public class GoalVO {
 	public String getG_name() {
 		return g_name;
 	}
-	public void setG_Name(String name) {
-		this.g_name = name;
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
 	}
 	public int getG_goalAmount() {
 		return g_goalAmount;
@@ -53,10 +52,14 @@ public class GoalVO {
 	public void setG_currentAmount(int g_currentAmount) {
 		this.g_currentAmount = g_currentAmount;
 	}
+	
 	@Override
 	public String toString() {
 		return "GoalVO [id=" + id + ", g_num=" + g_num + ", g_regisDate=" + g_regisDate + ", g_goalDate=" + g_goalDate
-				+ ", g_name=" + g_name + ", g_goalAmount=" + g_goalAmount + ", g_currentAmount=" + g_currentAmount + "]";
+				+ ", g_name=" + g_name + ", g_goalAmount=" + g_goalAmount + ", g_currentAmount=" + g_currentAmount
+				+ "]";
 	}
+	
+	
 
 }

@@ -67,5 +67,13 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+	// 목표 금액 내역
+	@Override
+	public List<AccountVO> goalAmountList(int ac_goalNum) {
+		
+		return accDao.goalAmountList(ac_goalNum);
+		
+	}
+
 
 }

@@ -3,6 +3,7 @@ package com.won.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.won.model.AccountVO;
 import com.won.model.GoalVO;
+import com.won.model.MemberVO;
+import com.won.service.AccountService;
 import com.won.service.GoalService;
 
 @Controller
@@ -23,17 +27,25 @@ public class GoalController {
 
 	@Inject
 	private GoalService goalService;
+	
+	@Inject
+	private AccountService accService;
 
 	// 목표 목록
 	@RequestMapping(value = "/goalList", method = RequestMethod.GET)
-	public void listGET(Model model) throws Exception {
+	public void listGET(Model model, HttpSession session) throws Exception {
 
 		logger.info("목표 목록창 진입");
 
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		
+		String id = member.getId();
+		
 		List<GoalVO> goalList = null;
-		goalList = goalService.goalList();
-
+		goalList = goalService.goalList(id);
+		
 		model.addAttribute("goalList", goalList);
+		model.addAttribute("cnt",goalService.goalCount(id));
 	}
 
 	// 목표 등록 Get
@@ -44,28 +56,37 @@ public class GoalController {
 
 	// 목표 등록 Post
 	@RequestMapping(value = "/goalAdd", method = RequestMethod.POST)
-	public String postAdd(GoalVO goal) throws Exception {
-
-		goalService.goalInsert(goal);
+	public String postAdd(GoalVO goalVO, HttpSession session) throws Exception {
 
 		logger.info("목표 목록창 진입");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		goalVO.setId(member.getId());
+		
+		goalService.goalInsert(goalVO);
+		logger.info(goalVO.getG_name());
 
 		return "redirect:/goal/goalList";
 
 	}
 
 	// 목표 상세 보기
-	@RequestMapping(value = "/goalView", method = RequestMethod.GET)
+	@RequestMapping(value = "/goalView", method = RequestMethod.GET, params = {"g_num"})
 	public void getView(@RequestParam("g_num") int g_num, Model model) throws Exception {
 		logger.info("목표 상세창 진입");
 
 		GoalVO goal = goalService.goalView(g_num);
+		
+		List<AccountVO> accList = null;
+		accList = accService.goalAmountList(g_num);
 
-		model.addAttribute("goalView", goal); // jsp에서 ${goalview.g_name} 형식으로 부르기
+		model.addAttribute("goalView", goal);
+		model.addAttribute("goalAmountList",accList);
+
 	}
 
 	// 목표 수정
-	@RequestMapping(value = "/goalModify", method = RequestMethod.GET)
+	@RequestMapping(value = "/goalModify", method = RequestMethod.GET, params = {"g_num"})
 	public void getMofidy(@RequestParam("g_num") int g_num, Model model) throws Exception {
 
 		GoalVO goal = goalService.goalView(g_num);
@@ -80,12 +101,12 @@ public class GoalController {
 
 		goalService.goalModify(goal);
 
-		return "redirect:/goal/view?g_num=" + goal.getG_num();
+		return "redirect:/goal/goalList";
 
 	}
 
 	// 목표 삭제
-	@RequestMapping(value = "/goalDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/goalDelete", method = RequestMethod.GET, params = {"g_num"})
 	public String getDelete(@RequestParam("g_num") int g_num) throws Exception {
 
 		goalService.goalDelete(g_num);

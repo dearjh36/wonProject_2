@@ -5,3 +5,48 @@ accountmapper.xml - 가게부 내역
 select * from account where id = #{id}, ac_date between '2022-11-01' and '2022-12-01';
 
 submit()을 스크립트 내에 fuction() 으로 빼고 싶은데 안됨 바로 submit() 갈겨야함
+
+헤더 만들기 => 로그아웃 바로 가고, 메인 바로 가고.
+
+accAdd 스크립트 실행안됨
+
+
+goalList 내의 시간 계산 -> 클래스 따로 만들어서 계산한후에 model에 실어보내기
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.*;
+
+public class tempCaclurator {
+
+	public static void main(String[] args) {
+		LocalDateTime currentDay = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
+		String formatted = currentDay.format(formatter);
+		int goalWaitDay; // 목표 달성까지
+		int goalPrice; // 목표금액
+		int currentCompletionPrice; // 현재 목표 달성금액
+		int goalPrecent; // 목표 달성률
+		
+		int goalYear = 2023;
+		int goalMonth = 10;
+		int goalDay = 30;
+		LocalDateTime endDT = LocalDateTime.of(goalYear, goalMonth, goalDay, 14, 30, 55); // 여기에 목표날짜 받아오기..
+
+		Period diff = Period.between(currentDay.toLocalDate(),endDT.toLocalDate());
+		
+		goalWaitDay = diff.getYears() + diff.getMonths() + diff.getDays();
+		goalPrice = 2000000; // 목표 금액 받아오기
+		currentCompletionPrice = 205000; // 현재 달성 금액 받아오기
+		goalPrecent = (int)((float)currentCompletionPrice / (float)goalPrice * 100);
+		
+		System.out.println(
+		formatted + " 기준\n"
+		+ "목표 달성까지 " + goalWaitDay + "일\n" 
+		+ "목표 금액 " + goalPrice + "원\n"
+		+ "현재 달성 금액 " + currentCompletionPrice + "원\n"
+		+ "목표 달성률 " + goalPrecent + "%");
+		
+	}
+
+}

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.won.model.AccountVO;
+import com.won.model.GoalVO;
 import com.won.model.MemberVO;
 import com.won.service.AccountService;
+import com.won.service.GoalService;
 
 @Controller
 @RequestMapping("/account/")
@@ -23,6 +25,9 @@ public class AccountController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
+	@Inject
+	private GoalService goalService;
+	
 	@Inject
 	private AccountService accService;
 
@@ -37,7 +42,6 @@ public class AccountController {
 
 		List<AccountVO> accList = null;
 		accList = accService.accountList(id);
-		//accList = accService.accountList();
 		logger.info(id);
 		logger.info(accList.toString());
 		
@@ -47,8 +51,17 @@ public class AccountController {
 
 	// 가계부 내역 등록 Get
 	@RequestMapping(value = "/accAdd", method = RequestMethod.GET)
-	public void getAdd() throws Exception {
-
+	public void getAdd(HttpSession session, Model model) throws Exception {
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String id = member.getId();
+		
+		List<GoalVO> goalList = null;
+		goalList = goalService.goalList(id);
+		
+		model.addAttribute("goalList", goalList);		
+		model.addAttribute("cnt",goalService.goalCount(id));
+		
 	}
 
 	// 가계부 내역 등록 POST

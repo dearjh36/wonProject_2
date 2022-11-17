@@ -18,9 +18,9 @@ public class GoalDaoImpl implements GoalDao{
 
 	// 목표 목록
 	@Override
-	public List<GoalVO> goalList() throws Exception {
+	public List<GoalVO> goalList(String id) throws Exception {
 		
-		return sqlsession.selectList(namespace+".goalList");
+		return sqlsession.selectList(namespace+".goalList",id);
 		
 	}
 
@@ -54,6 +54,14 @@ public class GoalDaoImpl implements GoalDao{
 
 		sqlsession.delete(namespace + ".goalDelete", g_num);
 	
+	}
+
+	// 목표 개수
+	@Override
+	public int goalCount(String id) throws Exception {
+		
+		return sqlsession.selectOne(namespace + ".goalCount", id);
+		
 	}
 	
 }

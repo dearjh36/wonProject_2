@@ -50,10 +50,19 @@ public class AccountDaoImpl implements AccountDao{
 		
 	}
 
+	// 목표 하나 고르기
 	@Override
 	public AccountVO accountView(int ac_num) throws Exception {
 		
 		return sqlsession.selectOne(namespace + ".accountView",ac_num);
+		
+	}
+
+	// 목표 금액 내역
+	@Override
+	public List<AccountVO> goalAmountList(int ac_goalNum) {
+		
+		return sqlsession.selectList(namespace + ".goalAmountList", ac_goalNum);
 		
 	}
 }

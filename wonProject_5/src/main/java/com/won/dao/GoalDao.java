@@ -7,7 +7,7 @@ import com.won.model.GoalVO;
 public interface GoalDao {
 
 	// 목표 목록
-	public List<GoalVO> goalList() throws Exception;
+	public List<GoalVO> goalList(String id) throws Exception;
 
 	// 목표 상세 보기
 	public GoalVO goalView(int g_num) throws Exception;
@@ -20,5 +20,8 @@ public interface GoalDao {
 
 	// 목표 삭제
 	public void goalDelete(int g_num) throws Exception;
+	
+	// 목표 개수
+	public int goalCount(String id) throws Exception;
 
 }
