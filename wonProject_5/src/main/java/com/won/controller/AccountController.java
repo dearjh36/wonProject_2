@@ -71,10 +71,24 @@ public class AccountController {
 		logger.info("가계부 내역 목록 등록창 진입");
 
 		MemberVO member = (MemberVO)session.getAttribute("member");
-		accVO.setId(member.getId());
 		
-		logger.info(accVO.toString());
+		String id = member.getId();
 		
+		accVO.setId(id);
+		
+		if(accVO.getAc_classify().equals("saving")) {
+			int addPrice = accVO.getAc_price();
+			
+			GoalVO goal = goalService.goalView(accVO.getAc_goalNum());
+			
+			int price = goal.getG_currentAmount();
+			price += addPrice;
+			
+			goal.setG_currentAmount(price);
+			
+			goalService.currentAmountAdd(goal);
+			
+		}
 		accService.accountInsert(accVO);
 
 		return "redirect:/account/accMain";
@@ -110,6 +124,25 @@ public class AccountController {
 	@RequestMapping(value = "/accDelete", method = RequestMethod.GET,params = {"ac_num"})
 	public String getDelete(@RequestParam("ac_num") int ac_num) throws Exception {
 
+		AccountVO accVO = accService.accountView(ac_num);
+		
+		int num = accVO.getAc_goalNum();
+		
+		GoalVO goalVO = goalService.goalView(num);
+		
+		String name = goalVO.getG_name();
+		
+		if(name != null) {
+			int num2 = goalVO.getG_currentAmount();
+			int num3 = accVO.getAc_price();
+			num2 = num2 - num3;
+			
+			goalVO.setG_currentAmount(num2);
+			
+			goalService.currentAmountAdd(goalVO);
+			
+		}
+		
 		accService.accountDelete(ac_num);
 
 		return "redirect:/account/accMain";

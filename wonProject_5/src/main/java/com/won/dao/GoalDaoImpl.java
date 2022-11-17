@@ -63,5 +63,13 @@ public class GoalDaoImpl implements GoalDao{
 		return sqlsession.selectOne(namespace + ".goalCount", id);
 		
 	}
+
+	// 모은 금액 변경
+	@Override
+	public void currentAmountAdd(GoalVO goal) throws Exception {
+
+		sqlsession.update(namespace + ".currentAmountAdd", goal);
+		
+	}
 	
 }

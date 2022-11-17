@@ -60,18 +60,13 @@
 	]]>
 	</select>	
 	
-	<!-- 금액 추가 -->
+	<!-- 모은 금액 변경 -->
 	<update id = "currentAmountAdd" parameterType="com.won.model.GoalVO">
 	<![CDATA[
-		update goal set g_currentAmount = #{g_currentAmount} where id = #{id}
+		update goal set g_currentAmount = #{g_currentAmount} where g_num = #{g_num}
 	]]>
 	</update>
 	
-	<!-- 금액 삭제 -->
-	<update id = "currentAmountDel" parameterType="int">
-	<![CDATA[
-		update goal set g_currentAmount = #{g_currentAmount} where id = #{id}
-	]]>
-	</update>
+
 	
 </mapper>

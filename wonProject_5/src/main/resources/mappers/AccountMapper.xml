@@ -51,4 +51,13 @@
 	]]>
 	</select>
 	
+	<!-- 가계부 내역 개수 -->
+	<select id = "accCount" resultType = "Integer" parameterType="String">
+	<![CDATA[
+		select count(*) 
+		from account
+		where id = #{id}
+	]]>
+	</select>
+	
 </mapper>

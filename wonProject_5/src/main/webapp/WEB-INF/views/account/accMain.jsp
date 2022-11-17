@@ -11,6 +11,7 @@
 <body>
 <p>개의 목표 진행중</p>
 <button onclick="location.href='/goal/goalList'">목표 목록</button><br>
+<button onclick="location.href='/member/memInfo'">내 정보</button><br>
 <button> 목표 이름 </button>
 <button> 목표 이름2 </button><br><br>
 <form>

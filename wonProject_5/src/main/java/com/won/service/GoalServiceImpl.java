@@ -74,6 +74,14 @@ public class GoalServiceImpl implements GoalService{
 		return goalDao.goalCount(id);
 		
 	}
+
+	// 모은 금액 변경
+	@Override
+	public void currentAmountAdd(GoalVO goal) throws Exception {
+
+		goalDao.currentAmountAdd(goal);
+		
+	}
 	
 	
 }

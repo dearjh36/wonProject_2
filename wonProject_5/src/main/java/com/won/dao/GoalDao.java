@@ -23,5 +23,8 @@ public interface GoalDao {
 	
 	// 목표 개수
 	public int goalCount(String id) throws Exception;
+	
+	// 모은 금액 변경
+	public void currentAmountAdd(GoalVO goal) throws Exception;
 
 }

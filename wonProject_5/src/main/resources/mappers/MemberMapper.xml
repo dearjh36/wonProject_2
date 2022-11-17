@@ -16,11 +16,12 @@
 	<!-- 로그인 -->
 	<select id = "memberLogin" resultType = "com.won.model.MemberVO">
 	<![CDATA[
-		select id, m_name, m_birth, m_pw, m_phone, m_email, m_sub
+		select *
 		from member 
 		where id = #{id} and m_pw = #{m_pw}
 	]]>
 	</select>
+	
 
 	
 </mapper>
