@@ -14,21 +14,23 @@ public class AccountDaoImpl implements AccountDao{
 	@Autowired
 	private SqlSession sqlsession;
 	
+
 	private static String namespace = "com.won.mapper.AccountMapper";
 	
 	// 가계부 목록
 	@Override
 	public List<AccountVO> accountList(String id) throws Exception {
 		
-		return sqlsession.selectList(namespace+".accountList");
+		return sqlsession.selectList(namespace+".accountList",id);
 		
 	}
+	
 
 	// 가계부 내역 생성
 	@Override
 	public void accountInsert(AccountVO account) throws Exception {
 
-		sqlsession.insert(namespace = ".accountInsert", account);
+		sqlsession.insert(namespace + ".accountInsert", account);
 		
 	}
 
@@ -54,5 +56,4 @@ public class AccountDaoImpl implements AccountDao{
 		return sqlsession.selectOne(namespace + ".accountView",ac_num);
 		
 	}
-	
 }

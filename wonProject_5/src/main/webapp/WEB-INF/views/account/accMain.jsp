@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,6 +10,7 @@
 </head>
 <body>
 <p>개의 목표 진행중</p>
+<button onclick="location.href='/goal/goalList'">목표 목록</button>
 <button> 목표 이름 </button>
 <button> 목표 이름2 </button><br><br>
 <form>
@@ -36,7 +39,19 @@
             <option value="twelve">12</option>
         </select>
 </form>
+<a href="/account/accAdd">가계부 내역 추가</a>
 <pre>날짜          수입          지출          합계</pre>
+<c:forEach items="${accList}" var = "accList">
+	<fmt:formatDate pattern="dd" value="${accList.ac_date}"/>
+	${accList.ac_content}
+	<c:choose>
+		<c:when test="${accList.ac_classify eq 'income'}"><a href="/account/accModify?ac_num=${accList.ac_num}">수입</a></c:when>
+		<c:when test="${accList.ac_classify eq 'outcome'}"><a href="/account/accModify?ac_num=${accList.ac_num}">지출</a></c:when>
+		<c:otherwise>저금</c:otherwise>
+	</c:choose>
+	${accList.ac_price}
+	<br>
+</c:forEach>
 <hr>
 </body>
 </html>

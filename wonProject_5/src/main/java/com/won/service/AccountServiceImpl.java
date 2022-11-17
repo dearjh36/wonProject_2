@@ -24,10 +24,11 @@ public class AccountServiceImpl implements AccountService {
 	public List<AccountVO> accountList(String id) throws Exception {
 
 		log.info("(service)accList().....");
-
-		return accDao.accountList(id);
+		
+		List<AccountVO> result = accDao.accountList(id);
+		return result;
 	}
-
+	
 	// 가계부 내역 등록
 	@Override
 	public void accountInsert(AccountVO account) throws Exception {
@@ -65,5 +66,6 @@ public class AccountServiceImpl implements AccountService {
 		return accDao.accountView(ac_num);
 		
 	}
+
 
 }

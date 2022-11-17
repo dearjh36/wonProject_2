@@ -35,7 +35,7 @@ public class MemberController {
 		logger.info("post 회원가입");
 		
 		memService.memberJoin(memVO);
-		
+		logger.info(memVO.toString());
 		return "redirect:/member/memLogin";
 	}
 	

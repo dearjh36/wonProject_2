@@ -35,10 +35,14 @@ public class AccountController {
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		String id = member.getId();
 
-		logger.info(id);
 		List<AccountVO> accList = null;
 		accList = accService.accountList(id);
+		//accList = accService.accountList();
+		logger.info(id);
+		logger.info(accList.toString());
+		
 		model.addAttribute("accList", accList);
+		
 	}
 
 	// 가계부 내역 등록 Get
@@ -51,20 +55,28 @@ public class AccountController {
 	@RequestMapping(value = "/accAdd", method = RequestMethod.POST)
 	public String postAdd(AccountVO accVO, HttpSession session) throws Exception {
 
-		logger.info("가계부 내역 목록창 진입");
+		logger.info("가계부 내역 목록 등록창 진입");
 
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		accVO.setId(member.getId());
+		
+		logger.info(accVO.toString());
+		
 		accService.accountInsert(accVO);
 
 		return "redirect:/account/accMain";
 	}
 
 	// 가계부 내역 수정
-	@RequestMapping(value = "/accModify", method = RequestMethod.GET)
+	@RequestMapping(value = "/accModify", method = RequestMethod.GET,params = {"ac_num"})
 	public void getMofidy(@RequestParam("ac_num") int ac_num, Model model) throws Exception {
 
+		String num = Integer.toString(ac_num);
+		
+		logger.info(num);
+		
 		AccountVO accVO = accService.accountView(ac_num);
+		logger.info(accVO.toString());
 
 		model.addAttribute("accView", accVO);
 
@@ -75,13 +87,14 @@ public class AccountController {
 	public String postMofidy(AccountVO accVO) throws Exception {
 
 		accService.accountModify(accVO);
-
+		logger.info("수정Post"+accVO.toString());
+		
 		return "redirect:/account/accMain";
 
 	}
-
+	
 	// 가계부 내역 삭제
-	@RequestMapping(value = "/accDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/accDelete", method = RequestMethod.GET,params = {"ac_num"})
 	public String getDelete(@RequestParam("ac_num") int ac_num) throws Exception {
 
 		accService.accountDelete(ac_num);

@@ -20,4 +20,5 @@ public interface AccountDao {
 
 	// 가계부 내역 삭제
 	public void accountDelete(int ac_num) throws Exception;
+
 }
