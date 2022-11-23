@@ -27,4 +27,16 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlsession.selectOne(namespace + ".memberLogin", memVO);		
 	}
 
+	// 멤버 구독 상태 변경 add
+	@Override
+	public void memberSubAdd(String id) {
+		sqlsession.update(namespace + ".memberSubAdd", id);
+	}
+
+	@Override
+	public void memberSubStop(String id) {
+		sqlsession.update(namespace + ".memberSubStop", id);
+		
+	}
+
 }

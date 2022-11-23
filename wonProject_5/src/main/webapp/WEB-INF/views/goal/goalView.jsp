@@ -18,8 +18,8 @@
 <body>
 	<h2>${goalView.g_name}</h2>
 	<div class="div1">
-		<%= sf.format(nowTime) %> 기준<br> 목표 달성까지 112일<br> 목표 금액 ${goalView.g_goalAmount}원<br>
-		현재 달성 금액 ${goalView.g_currentAmount}<br> 목표 달성률 10%<br>
+		<%= sf.format(nowTime) %> 기준<br> 목표 달성까지 ${goalWaitDay}<br> 목표 금액 ${goalView.g_goalAmount}원<br>
+		현재 달성 금액 ${goalView.g_currentAmount}<br> 목표 달성률 ${goalPrecent}<br>
 	</div>
 	<div class="div2">
 		목표달성 금액<br>
@@ -40,7 +40,6 @@
 	<div class="div3">
 	<table border="1">
 		<tr>
-			<td>No.</td>
 			<td>날짜</td>
 			<td>금액</td>
 			<td>내용</td>
@@ -55,7 +54,7 @@
 	</table>
 	</div>
 	<div class="div3">
-		<button onclick="location.href='/goal/goalModify?g_num=${goalAmountList.ac_goalNum}'">수정하기</button>
+		<button onclick="location.href='/goal/goalModify?g_num=${goalView.g_num}'">수정하기</button>
 	</div>
 </body>
 </html>

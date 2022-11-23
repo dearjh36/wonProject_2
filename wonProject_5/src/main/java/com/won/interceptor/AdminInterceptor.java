@@ -21,11 +21,12 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 			return false;
 		}
 		
+		System.out.println(memVO.getId());/*
 		if(memVO.getId() != "admin") {
 			res.sendRedirect("/");
 			return false;
 		}
-		
+		*/
 		return true;
 		
 	}

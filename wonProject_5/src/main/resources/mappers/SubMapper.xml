@@ -13,11 +13,11 @@
 		]]>
 	</select>
 
-	<!-- 구독하기, 자동연장은 cron 사용 -->
+	<!-- 구독하기 -->
 	<insert id="subInsert" parameterType="com.won.model.SubVO">
 	<![CDATA[
 		insert into sub 
-		values(#{id}, s_seq.nextval, #{s_startDate}, #{s_lastDate}, #{s_ing}, #{s_pay})
+		values(#{id}, s_seq.nextval, #{s_startDate}, #{s_lastDate}, 'ing', #{s_pay})
 	]]>
 	</insert>
 
@@ -25,8 +25,7 @@
 	<update id="subStop" parameterType="com.won.model.SubVO">
 	<![CDATA[
 		update sub 
-		set 
-			s_ing = 0
+		set s_ing = 0
 		where id = #{id} and s_num = #{s_num}
 	]]>
 	</update>
@@ -41,13 +40,22 @@
 	</select>
 	
 	<!-- 구독 연장하기 -->
-	<update id = "subExtend" parameterType="com.won.model.GoalVO">
+	<update id = "subExtend" parameterType="com.won.model.SubVO">
 	<![CDATA[
-		update goal 
+		update sub 
 		set 
-			s_lastDate  = #{s_lastDate },
+			s_lastDate  = #{s_lastDate }
 		where s_num = #{s_num}
 	]]>
 	</update>
+	
+	<!-- member 구독중인 정보 가져오기 --> 
+	<select id = "subMemberView" resultType = "com.won.model.SubVO" parameterType="string">
+	<![CDATA[
+		select * 
+		from sub 
+		where id = #{id} and s_ing = 'ing'
+	]]>
+	</select>
 
 </mapper>

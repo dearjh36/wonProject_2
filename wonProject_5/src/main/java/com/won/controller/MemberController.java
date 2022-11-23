@@ -1,5 +1,9 @@
 package com.won.controller;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,13 +12,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.won.model.MemberVO;
+import com.won.model.SubVO;
 import com.won.service.MemberService;
+import com.won.service.SubService;
 
 @Controller
 @RequestMapping("/member/")
@@ -24,6 +29,9 @@ public class MemberController {
 
 	@Inject
 	private MemberService memService;
+
+	@Inject
+	private SubService subService;
 
 	// 회원가입 GET
 	@RequestMapping(value = "/memJoin", method = RequestMethod.GET)
@@ -79,15 +87,37 @@ public class MemberController {
 	}
 
 	// 내 정보
-	@RequestMapping(value = "/memIInfo", method = RequestMethod.GET)
+	@RequestMapping(value = "/memInfo", method = RequestMethod.GET)
 	public void Info(HttpSession session, Model model) throws Exception {
+		
 
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		String id = member.getId();
 		
+		
+		if(member.getM_sub() != "0") {
+		
+		SubVO sub = subService.subMemberView(id);
+		if(sub != null) {
+			
+		Calendar cal = Calendar.getInstance();
+		Date subDate = sub.getS_lastDate();
+		
+		cal.setTime(subDate);
+		cal.add(Calendar.DATE, 1);
+		
+		subDate = cal.getTime();
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = simpleDateFormat.format(subDate);
+        
+        logger.info(formattedDate);
+		
+		model.addAttribute("sub",sub);
+		model.addAttribute("payDay",formattedDate);
+		}
+		}
 		model.addAttribute("member", member);
-		
-		
 
 	}
 

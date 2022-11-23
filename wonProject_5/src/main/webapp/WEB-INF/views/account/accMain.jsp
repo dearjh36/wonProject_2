@@ -9,9 +9,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p>개의 목표 진행중</p>
+<p>${cnt}개의 목표 진행중</p>
 <button onclick="location.href='/goal/goalList'">목표 목록</button><br>
 <button onclick="location.href='/member/memInfo'">내 정보</button><br>
+<c:if test="${cnt ne 0}">
+
+	<c:forEach items="${goalList}" var = "goalList">
+
+			<a href="/goal/goalView?g_num=${goalList.g_num}">${goalList.g_name}</a> <br>
+			진행 퍼센트 ${goalPrecent} %<br><br><br>
+
+		</c:forEach>
+	
+</c:if>
 <button> 목표 이름 </button>
 <button> 목표 이름2 </button><br><br>
 <form>

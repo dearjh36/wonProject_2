@@ -16,35 +16,40 @@ public class SubDaoImpl implements SubDao{
 	
 	private static String namespace = "com.won.mapper.SubMapper";
 	
-	// 
+	// 구독자 목록
 	@Override
 	public List<SubVO> subList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectList(namespace + ".subList");
 	}
 
+	// 구독하기
 	@Override
 	public void subInsert(SubVO subVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlsession.insert(namespace + ".subInsert", subVO);
 	}
 
+	// 구독 취소
 	@Override
 	public void subStop(SubVO subVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlsession.update(namespace + ".subStop", subVO);
 	}
 
+	// 구독 내역 하나 가져오기
 	@Override
 	public SubVO subView(int s_num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectOne(namespace+".subView", s_num);
 	}
 
+	// 구독 
 	@Override
-	public void subExtend(int s_num) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void subExtend(SubVO subVO) throws Exception {
+		sqlsession.update(namespace + ".subExtend", subVO);
+	}
+
+	//member 구독중인 정보 가져오기
+	@Override
+	public SubVO subMemberView(String id) {
+		return sqlsession.selectOne(namespace+".subMemberView", id);
 	}
 
 }

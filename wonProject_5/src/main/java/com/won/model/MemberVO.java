@@ -1,7 +1,5 @@
 package com.won.model;
 
-import java.util.Date;
-
 public class MemberVO {
 	private String id;
 	private String m_name;

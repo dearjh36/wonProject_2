@@ -13,18 +13,11 @@
 
 <button onclick="location.href='/goal/goalAdd'">추가하기</button>
 <br><br>
-<!-- 
-		<div class="div1">2023/01/20</div>
-		<div class="div2">목표 기간까지 112일 남았습니다</div>
-	<div class="div3">친구와 제주도 여행</div>
-		<div class="div1">60%<br><progress value="60"  max="100"></progress></div>
-		<div class="div2">목표 금액 2,000,000<br>현재 금액 205,000</div>	 -->
-		
 		<c:forEach items="${goalList}" var = "goalList">
 			${goalList.g_goalDate} <br>
-			목표 날짜까지 n일 남았습니다 <br>
+			목표 날짜까지 ${goalWaitDay}일 남았습니다 <br>
 			<a href="/goal/goalView?g_num=${goalList.g_num}">${goalList.g_name}</a> <br>
-			진행 퍼센트 <br>
+			진행 퍼센트 ${goalPrecent} %<br>
 			${goalList.g_goalAmount}<br>
 			${goalList.g_currentAmount}<br><br><br><br>
 		</c:forEach>

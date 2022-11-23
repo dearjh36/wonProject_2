@@ -42,10 +42,22 @@ public class AccountController {
 
 		List<AccountVO> accList = null;
 		accList = accService.accountList(id);
-		logger.info(id);
-		logger.info(accList.toString());
 		
 		model.addAttribute("accList", accList);
+		
+		List<GoalVO> goalList = null;
+		goalList = goalService.goalList(id);		
+		
+		for(int i = 0; i<goalList.size(); i++) {
+			TimeSet ts = new TimeSet();
+			int tsarr[] = ts.goalTime(goalList.get(i));
+			model.addAttribute("goalWaitDay",tsarr[i]);
+			model.addAttribute("goalPrecent",tsarr[i+1]);		
+			
+		}
+		
+		model.addAttribute("goalList", goalList);
+		model.addAttribute("cnt",goalService.goalCount(id));
 		
 	}
 
@@ -75,6 +87,7 @@ public class AccountController {
 		String id = member.getId();
 		
 		accVO.setId(id);
+
 		
 		if(accVO.getAc_classify().equals("saving")) {
 			int addPrice = accVO.getAc_price();
@@ -100,10 +113,7 @@ public class AccountController {
 
 		String num = Integer.toString(ac_num);
 		
-		logger.info(num);
-		
 		AccountVO accVO = accService.accountView(ac_num);
-		logger.info(accVO.toString());
 
 		model.addAttribute("accView", accVO);
 
@@ -114,7 +124,6 @@ public class AccountController {
 	public String postMofidy(AccountVO accVO) throws Exception {
 
 		accService.accountModify(accVO);
-		logger.info("수정Post"+accVO.toString());
 		
 		return "redirect:/account/accMain";
 

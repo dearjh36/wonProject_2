@@ -10,7 +10,7 @@
 </head>
 <body>
 	<br>
-	<form method="post" id="loginFrm">
+	<form method="post" id="loginFrm" action="/member/memLogin">
 		id :<input type="text" id="id" name="id" required="required"><br> 
 		pwd :<input type="password" id="m_pw" name="m_pw" required="required"><br>
 		<input type="submit" value="로그인">

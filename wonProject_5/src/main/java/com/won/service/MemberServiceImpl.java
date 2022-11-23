@@ -33,5 +33,16 @@ public class MemberServiceImpl implements MemberService{
 	public void memberLogout(HttpSession session) throws Exception {
 		session.invalidate(); // 세션 데이터 삭제로 로그아웃
 	}
+
+	// 멤버 구독 상태 변경 add
+	@Override
+	public void memberSubAdd(String id) {
+		memDAO.memberSubAdd(id);
+	}
+
+	@Override
+	public void memberSubStop(String id) {
+		memDAO.memberSubStop(id);
+	}
 	
 }

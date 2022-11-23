@@ -14,7 +14,6 @@ public class AccountDaoImpl implements AccountDao{
 	@Autowired
 	private SqlSession sqlsession;
 	
-
 	private static String namespace = "com.won.mapper.AccountMapper";
 	
 	// 가계부 목록

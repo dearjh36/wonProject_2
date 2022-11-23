@@ -22,6 +22,26 @@
 	]]>
 	</select>
 	
+	<!-- 구독 시작 -->
+	<update id = "memberSubAdd" parameterType="string">
+	<![CDATA[
+		update member 
+		set 
+			m_sub  = 'ing'
+		where id = #{id}
+	]]>
+	</update>
+	
+	<!-- 구독 중지 -->
+	<update id = "memberSubStop" parameterType="string">
+	<![CDATA[
+		update member 
+		set 
+			m_sub  = 'stop'
+		where id = #{id}
+	]]>
+	</update>
 
+	
 	
 </mapper>

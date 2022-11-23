@@ -1,6 +1,7 @@
 package com.won.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -42,7 +43,15 @@ public class GoalController {
 		String id = member.getId();
 		
 		List<GoalVO> goalList = null;
-		goalList = goalService.goalList(id);
+		goalList = goalService.goalList(id);		
+		
+		for(int i = 0; i<goalList.size(); i++) {
+			TimeSet ts = new TimeSet();
+			int tsarr[] = ts.goalTime(goalList.get(i));
+			model.addAttribute("goalWaitDay",tsarr[i]);
+			model.addAttribute("goalPrecent",tsarr[i+1]);		
+			
+		}
 		
 		model.addAttribute("goalList", goalList);
 		model.addAttribute("cnt",goalService.goalCount(id));
@@ -64,7 +73,6 @@ public class GoalController {
 		goalVO.setId(member.getId());
 		
 		goalService.goalInsert(goalVO);
-		logger.info(goalVO.getG_name());
 
 		return "redirect:/goal/goalList";
 
@@ -77,11 +85,18 @@ public class GoalController {
 
 		GoalVO goal = goalService.goalView(g_num);
 		
+		
 		List<AccountVO> accList = null;
 		accList = accService.goalAmountList(g_num);
+		
+		TimeSet ts = new TimeSet();
+		
+		int tsarr[] = ts.goalTime(goal);
 
 		model.addAttribute("goalView", goal);
 		model.addAttribute("goalAmountList",accList);
+		model.addAttribute("goalWaitDay",tsarr[0]);
+		model.addAttribute("goalPrecent",tsarr[1]);		
 
 	}
 

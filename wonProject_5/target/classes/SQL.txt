@@ -25,7 +25,7 @@ id varchar2(20),                --회원 아이디
 s_num int not null primary key, --구독 번호
 s_startDate date,               --구독 시작 날짜
 s_lastDate date,                --구독 마지막 날짜
-s_ing varchar2(20)              --구독 횟수 //한번 기준 
+s_ing varchar2(20),              --구독 횟수 //한번 기준 
 s_pay varchar2(20) 		-- 결제 수단
 );
 
@@ -39,7 +39,7 @@ ac_price int,                     -- 가계부 내역 금액
 ac_content varchar2(200)          -- 가계부 내용
 );
 
-create sequence g_num
+create sequence g_seq
 INCREMENT by 1
 START with 1
 MINVALUE 1

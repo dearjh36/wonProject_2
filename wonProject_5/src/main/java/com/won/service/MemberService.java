@@ -14,5 +14,11 @@ public interface MemberService {
 	
 	// 로그아웃
 	public void memberLogout(HttpSession session) throws Exception;
+
+	// 멤버 구독 상태 변경 add
+	public void memberSubAdd(String id);
+
+	// 멤버 구독 상태 변경 stop
+	public void memberSubStop(String id);
 	
 }

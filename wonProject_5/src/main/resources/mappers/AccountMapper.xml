@@ -43,11 +43,11 @@
 	
 		
 	<!-- 목표 금액 내역 목록 -->
-	<select id = "goaLAmountList" resultType = "com.won.model.AccountVO" parameterType="int">
+	<select id = "goalAmountList" resultType = "com.won.model.AccountVO" parameterType="int">
 	<![CDATA[
 		select * 
 		from account
-		where ac_goalNum = #{ac_goalNum}
+		where ac_goalNum = #{ac_goalNum} and AC_CLASSIFY = 'saving'
 	]]>
 	</select>
 	
