@@ -10,8 +10,7 @@ submit()을 스크립트 내에 fuction() 으로 빼고 싶은데 안됨 바로 
 
 accAdd 스크립트 실행안됨
 
-
-goalList 내의 시간 계산 -> 클래스 따로 만들어서 계산한후에 model에 실어보내기
+adminMain, memberSearch -> keyword값과 searchType 값 실어보내기
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

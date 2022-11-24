@@ -17,15 +17,15 @@
 		</select>
 		<input type="text" name="keyword"> <input type="submit" value="검색하기">
 	</form>
-	<c:forEach items="${memList}" var = "memList">
+	<c:forEach items="${memberList}" var = "memberList">
 		<table>
 			<tr>
-				<td><a href="/admin/memberView?id=${memList.id}">${memList.id}</a></td>
-				<td>${memList.m_name}</td>
-				<td>${memList.m_birth}</td>
-				<td>${memList.m_phone}</td>
-				<td>${memList.m_email}</td>
-				<td>${memList.m_sub}</td>
+				<td><a href="/admin/memberView?id=${memberList.id}">${memberList.id}</a></td>
+				<td>${memberList.m_name}</td>
+				<td>${memberList.m_birth}</td>
+				<td>${memberList.m_phone}</td>
+				<td>${memberList.m_email}</td>
+				<td>${memberList.m_sub}</td>
 			</tr>
 		</table>
 	</c:forEach>

@@ -37,4 +37,33 @@
 		where id = #{id}
 	</select>
 
+	<!-- 회원 목록 총 갯수 -->
+	<select id ="pageCount" resultType="int">
+		select count(id) from member
+	</select>
+	
+	<!-- 회원 목록 + 페이징
+	<select id="pageMember" parameterType="hashMap" resultType="com.won.model.MemberVO">
+		<![CDATA[
+		select *
+		from (
+			select * 
+			from member
+			order by id asc)
+		where rownum <= 10;
+		]]>
+	</select> -->
+	
+	<!-- id 검색 -->
+	<select id="memberSearch" parameterType="String" resultType="com.won.model.MemberVO">		
+			select *
+			from member
+			<if test='serarchType.equals("id")'>
+				where id LIKE '%' || #{keyword} || '%' 
+			</if> 
+			<if test='serarchType.equals("name")'>
+				where m_name LIKE '%' || #{keyword} || '%'
+			</if> 
+	</select>
+
 </mapper>

@@ -49,5 +49,16 @@ public class AdminServiceImpl implements AdminService{
 	public MemberVO memberOne(String id) throws Exception {
 		return admin.memberOne(id);
 	}
+
+	@Override
+	public List<MemberVO> memberSearch(String searchType, String keyword) throws Exception {
+		 return  admin.memberSearch(searchType, keyword);
+	}
+
+	/*//회원 목록 총 갯수
+	@Override
+	public int pageCount() throws Exception {
+		return admin.pageCount();
+	}*/
 	
 }

@@ -111,8 +111,6 @@ public class AccountController {
 	@RequestMapping(value = "/accModify", method = RequestMethod.GET,params = {"ac_num"})
 	public void getMofidy(@RequestParam("ac_num") int ac_num, Model model) throws Exception {
 
-		String num = Integer.toString(ac_num);
-		
 		AccountVO accVO = accService.accountView(ac_num);
 
 		model.addAttribute("accView", accVO);

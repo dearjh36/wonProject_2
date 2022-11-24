@@ -21,4 +21,10 @@ public interface AdminService {
 	// 회원 하나 고르기
 	public MemberVO memberOne(String id) throws Exception;
 
+	/*// 회원 목록 총 갯수
+	public int pageCount() throws Exception;*/
+
+	// 회원 검색
+	public List<MemberVO> memberSearch(String searchType, String keyword) throws Exception;
+
 }

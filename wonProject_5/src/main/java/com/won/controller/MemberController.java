@@ -62,16 +62,22 @@ public class MemberController {
 
 		MemberVO login = memService.memberLogin(memVO);
 		HttpSession session = req.getSession();
-
 		if (login != null) {
 			session.setAttribute("member", login);
+
+			if (login.getId().equals("admin")) {
+				session.setAttribute("member", login);
+				return "redirect:/admin/adminMain";
+			} else {
+				return "redirect:/account/accMain";
+			}
+			
 		} else {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:/member/memLogin";
 		}
 
-		return "redirect:/account/accMain";
 	}
 
 	// 로그아웃
@@ -89,33 +95,31 @@ public class MemberController {
 	// 내 정보
 	@RequestMapping(value = "/memInfo", method = RequestMethod.GET)
 	public void Info(HttpSession session, Model model) throws Exception {
-		
 
-		MemberVO member = (MemberVO)session.getAttribute("member");
+		MemberVO member = (MemberVO) session.getAttribute("member");
 		String id = member.getId();
-		
-		
-		if(member.getM_sub() != "0") {
-		
-		SubVO sub = subService.subMemberView(id);
-		if(sub != null) {
-			
-		Calendar cal = Calendar.getInstance();
-		Date subDate = sub.getS_lastDate();
-		
-		cal.setTime(subDate);
-		cal.add(Calendar.DATE, 1);
-		
-		subDate = cal.getTime();
-		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = simpleDateFormat.format(subDate);
-        
-        logger.info(formattedDate);
-		
-		model.addAttribute("sub",sub);
-		model.addAttribute("payDay",formattedDate);
-		}
+
+		if (member.getM_sub() != "0") {
+
+			SubVO sub = subService.subMemberView(id);
+			if (sub != null) {
+
+				Calendar cal = Calendar.getInstance();
+				Date subDate = sub.getS_lastDate();
+
+				cal.setTime(subDate);
+				cal.add(Calendar.DATE, 1);
+
+				subDate = cal.getTime();
+
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String formattedDate = simpleDateFormat.format(subDate);
+
+				logger.info(formattedDate);
+
+				model.addAttribute("sub", sub);
+				model.addAttribute("payDay", formattedDate);
+			}
 		}
 		model.addAttribute("member", member);
 

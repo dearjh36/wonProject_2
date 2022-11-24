@@ -1,5 +1,6 @@
 package com.won.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,5 +46,24 @@ public class AdminDaoImpl implements AdminDao{
 	public MemberVO memberOne(String id) throws Exception {
 		return sql.selectOne(namespace+".memberOne",id);
 	}
+
+	@Override
+	public List<MemberVO> memberSearch(String searchType, String keyword) throws Exception {
+
+		  HashMap<String, Object> data = new HashMap<String, Object>();
+		  
+		  data.put("searchType", searchType);
+		  data.put("keyword", keyword);
+		  
+		  return sql.selectList(namespace + ".memberSearch", data);
+	}
+
+/*	//회원 목록 총 갯수
+	@Override
+	public int pageCount() throws Exception {
+		return sql.selectOne(namespace+".pageCount");
+	}*/
+	
+	
 
 }
